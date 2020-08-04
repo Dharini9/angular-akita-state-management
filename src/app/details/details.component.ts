@@ -20,6 +20,9 @@ export class DetailsComponent implements OnInit {
     this.dataService.commonGetApiCall('http://demo7880871.mockable.io/postlogin').subscribe(result => {
       if (result['Code'] === 200) {
         console.log(result['Data']);
+        if (result['Data']['userInfo']) {
+          this.dataService.storeUserInfo(result['Data']['userInfo']);
+        }
       }
     });
   }

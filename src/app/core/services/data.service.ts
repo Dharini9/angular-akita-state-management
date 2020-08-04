@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
+import { PostLoginStore } from '../store/postLogin/post-login.store';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,8 @@ import { ApiService } from './api.service';
 export class DataService {
 
   constructor(
-    private apiService: ApiService
+    private apiService: ApiService,
+    private postLoginStore: PostLoginStore
   ) { }
 
   commonGetApiCall(url, param = null, externalUrl = null) {
@@ -20,5 +22,9 @@ export class DataService {
 
   commonPostApiCall(url, param, externalUrl = null, isFormdata = false) {
     return this.apiService.post(url, param, externalUrl, isFormdata);
+  }
+
+  storeUserInfo(userInfo) {
+    this.postLoginStore.update(userInfo);
   }
 }
