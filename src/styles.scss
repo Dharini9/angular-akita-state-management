@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900');
+@import url('./assets/css/dx-common.scss');
+@import url('./assets/css/dx.scss');
+
+p{margin: 0px;}
+body{margin: 0px; padding: 0px; background: #f4f3f9; font-family: 'Source Sans Pro', sans-serif !important;}
+body .dx-widget{font-family: 'Source Sans Pro', sans-serif !important;}
+*{box-sizing: border-box;}
+a{transition:all 0.5s ease-out;}
+
+/*--Login page css--*/
+.login-form ul li .login-field .dx-texteditor-container .dx-texteditor-input{background:#f7f8fc; padding:12px; border-radius:0; font-weight:600;}
+.login-form ul li:last-child{text-align:center; margin-bottom: 20px !important;}
+.login-form ul li .dx-button-mode-contained.dx-button-success{width:121px; background: rgb(44, 129, 193); height:48px; text-transform: uppercase; font-weight: 600; letter-spacing: 1px; transition: all 0.5s ease-out;}
+.login-form ul li .dx-button-mode-contained.dx-button-success:hover{border-color:#2c81c1;  background: rgba(44, 129, 193, 0.1); color:#2c81c1;}
