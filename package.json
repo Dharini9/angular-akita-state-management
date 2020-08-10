@@ -19,7 +19,10 @@
     "@angular/platform-browser": "~8.2.14",
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
-    "@datorama/akita": "^5.2.1",
+    "@datorama/akita": "^5.2.2",
+    "devextreme": "^20.1.6",
+    "devextreme-angular": "^20.1.6",
+    "redux-devtools-extension": "^2.13.8",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"

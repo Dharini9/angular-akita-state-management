@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../core/services/data.service';
+import { PostLoginQuery } from '../core/store/postLogin/post-login.query';
 
 @Component({
   selector: 'app-details',
@@ -8,12 +9,25 @@ import { DataService } from '../core/services/data.service';
 })
 export class DetailsComponent implements OnInit {
 
+  displayName = 'this is display name';
+  emailID: string;
+
   constructor(
-    private dataService: DataService
+    private dataService: DataService,
+    private postLoginQuery: PostLoginQuery
   ) { }
 
   ngOnInit() {
     this.loadDetails();
+    this.postLoginQuery.selectName$.subscribe(displayName => {
+      if (displayName) {
+        this.displayName = displayName;
+      }
+    });
+
+    this.postLoginQuery.loginDetails$.subscribe(state => {
+      this.emailID = state.UserEmail;
+    });
   }
 
   loadDetails() {

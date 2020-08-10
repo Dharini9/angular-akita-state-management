@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { DetailsComponent } from './details/details.component';
 import { PostLoginStore } from './core/store/postLogin/post-login.store';
 import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
+import { PostLoginQuery } from './core/store/postLogin/post-login.query';
 
 @NgModule({
   declarations: [
@@ -16,10 +17,11 @@ import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    AkitaNgDevtools
+    AkitaNgDevtools.forRoot()
   ],
   providers: [
-    PostLoginStore
+    PostLoginStore,
+    PostLoginQuery
   ],
   bootstrap: [AppComponent]
 })
