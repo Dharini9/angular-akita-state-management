@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,23 +14,18 @@ export class LoginComponent implements OnInit, OnDestroy {
   landingPageData: any;
   isDataLoading: any;
   versionNumber: string;
-  private onDestroy$ = new Subject<void>();
   logoImage;
   loaderImage = 'assets/images/loading.gif';
   isFormControlsDisabled = false;
 
+  private onDestroy$ = new Subject<void>();
+
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) { }
 
   ngOnInit() {
-    /**this.fromApp.select(state => state.landingPage.landingPageData)
-      .pipe(takeUntil(this.onDestroy$))
-      .subscribe((landingPageData) => {
-        this.landingPageData = landingPageData;
-        this.logoImage = `${this.basePath}${this.landingPageData.Logo}`;
-      });*/
-
     this.loginForm = this.fb.group({
       'email': [null, Validators.compose([Validators.required, Validators.email])],
       'password': [null, Validators.compose([Validators.required])]
@@ -53,28 +49,17 @@ export class LoginComponent implements OnInit, OnDestroy {
   onFormSubmit(e) {
     this.getIsDataLoading();
     const userData = {
-      'userName': this.loginForm.get('email').value,
-      'password': this.loginForm.get('password').value,
-      'grant_type': 'password'
+      userName: this.loginForm.get('email').value,
+      password: this.loginForm.get('password').value,
+      grant_type: 'password'
     };
-    // const loginParam  = new FormData();
-    // loginParam.append('userName',this.loginForm.get('email').value);
-    // loginParam.append('password',this.loginForm.get('password').value);
-    // loginParam.append('grant_type', 'password');
 
     const loginParam = `username=${this.loginForm.get('email').value}&password=${this.loginForm.get('password').value}&grant_type=password`;
     // this.store.dispatch(new SaveToken(loginParam));
     this.isFormControlsDisabled = true;
-    /**this.fromApp.select(state => state.login).subscribe(x => {
-      if (!x.isAuthenticated && !x.isLoading) {
-        // Reset password if wrong username and password
-        this.isFormControlsDisabled = false;
-        this.loginForm.reset({
-          password: '',
-          email: this.loginForm.get('email').value
-        });
-      }
-    });*/
+    if (userData.userName && userData.password) {
+      this.router.navigate(['landing']);
+    }
   }
 
   ngOnDestroy() {

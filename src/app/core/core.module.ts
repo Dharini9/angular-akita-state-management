@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DxTextBoxModule, DxButtonModule, DxValidatorModule } from 'devextreme-angular';
+import { DxTextBoxModule, DxButtonModule, DxValidatorModule, DxDataGridModule } from 'devextreme-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -11,14 +11,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     DxTextBoxModule,
     DxButtonModule,
-    DxValidatorModule
+    DxValidatorModule,
+    DxDataGridModule
   ],
   exports: [
     FormsModule,
     ReactiveFormsModule,
     DxTextBoxModule,
     DxButtonModule,
-    DxValidatorModule
+    DxValidatorModule,
+    DxDataGridModule
   ]
 })
 export class CoreModule { }

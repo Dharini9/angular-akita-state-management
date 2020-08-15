@@ -1,1 +1,5 @@
 <p>details works! {{displayName}} {{emailID}}</p>
+
+<app-generic-grid *ngIf="gridColumns.length && gridConfigData"
+    [gridConfigData]="{GridCofig: gridConfigData, GridColumns: gridColumns}">
+</app-generic-grid>

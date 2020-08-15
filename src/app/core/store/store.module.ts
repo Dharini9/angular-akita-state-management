@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PostLoginStore } from './postLogin/post-login.store';
 import { PostLoginQuery } from './postLogin/post-login.query';
+import { DynamicGridsStore } from './dynamicGrids/dynamic-grids.store';
+import { DynamicGridsQuery } from './dynamicGrids/dynamic-grids.query';
 
 
 
@@ -12,7 +14,9 @@ import { PostLoginQuery } from './postLogin/post-login.query';
   ],
   providers: [
     PostLoginStore,
-    PostLoginQuery
+    PostLoginQuery,
+    DynamicGridsStore,
+    DynamicGridsQuery
   ],
   exports: []
 })
