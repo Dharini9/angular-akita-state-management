@@ -8,8 +8,7 @@ import { PostLoginStore } from '../store/postLogin/post-login.store';
 export class DataService {
 
   constructor(
-    private apiService: ApiService,
-    private postLoginStore: PostLoginStore
+    private apiService: ApiService
   ) { }
 
   commonGetApiCall(url, param = null, externalUrl = null) {
@@ -22,9 +21,5 @@ export class DataService {
 
   commonPostApiCall(url, param, externalUrl = null, isFormdata = false) {
     return this.apiService.post(url, param, externalUrl, isFormdata);
-  }
-
-  storeUserInfo(userInfo) {
-    this.postLoginStore.update(userInfo);
   }
 }

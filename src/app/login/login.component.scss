@@ -1,0 +1,23 @@
+*{box-sizing: border-box;}
+.login-form{margin: -82px 0 0 0; padding: 0px; float: left; width: 100%; height: 112vh; font-weight: 600; background: url(../../assets/images/loginBanner.jpg) center / cover; }
+.login-form-in{margin: 0px; padding: 0 0px 20px; float: left; width: 500px; position: relative; left: 50%; top: 50%; transform: translateX(-50%) translateY(-50%); box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); background:#fff; border-radius:3px; }
+.login-form-in span{margin: 10px 0; padding: 10px 0; float: left; width: 100%; text-align: center; border-bottom: 1px solid #f1f1f1;}
+.login-form-in span img{float: none; display: inline-block; height: fit-content; width: auto;}
+.login-form-in form{margin-top: 10px; float: left; width: 100%;}
+.login-form-in .form-group{float: left; width: 100%; padding: 0px 40px 0;}
+
+.login-form ul{margin:10px 0 0 0; padding:0 40px; float:left; width:100%; list-style:none;}
+.login-form ul li{margin:0 0 30px; padding:0px; float:left; width:100%;}
+.login-form ul li label{margin:0 0 10px; padding:0px; float:left; width:100%; font-size:13px; font-weight:600;}
+.login-form ul li .login-field{margin:0px; padding:0px; float:left; width:100%; background:#f7f8fc; border:none; outline:none;}
+
+.bottom-button{margin: 10px 0 0 0; padding: 0px; float: left; width: 100%; text-align: center;}
+.bottom-button button{margin: 0 10px 0 0; float: none; display: inline-block; width: auto; background:#2c81c0; min-width: 120px; line-height: 47px; border: none; font-size: 15px; color: #fff; font-weight: 600; text-transform: uppercase;}
+.bottom-button a{margin: 0px; padding: 10px; float: left; width: auto; background: rgba(0, 0, 0, 0.3); border: none; font-size: 15px; color: #fff; text-decoration: none; font-family: Arial, Helvetica, sans-serif; font-weight: 600;}
+
+.forget-link{margin: 0px 0 0 0; padding: 0px; float: left; width: 100%; text-align: center;}
+.forget-link a{margin: 15px 0 15px 0; padding: 0px; float: left; width: 100%; font-size: 13px; color:rgba(0, 0, 0, 0.5); font-weight: 600; text-decoration: none;}
+
+.login-form-in p{margin: 0 0 -30px; padding: 0px; float: left; width: 100%; text-align: center; font-size: 12px; color: #fff; font-weight: 500; position: relative; bottom: -30px;}
+
+.privacy a{ color: #fff; text-decoration: none;}

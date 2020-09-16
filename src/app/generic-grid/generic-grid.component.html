@@ -1,0 +1,149 @@
+<dx-data-grid #genericDataGrid id="gridContainer" class="gridContainer activity-to-date-print" [showBorders]="true"
+    [dataSource]="dataStore" [columns]="gridConfigData.GridColumns" [showBorders]="true" [allowColumnReordering]="true"
+    [columnAutoWidth]="true" [allowColumnResizing]="true" [showColumnLines]="true" [showRowLines]="false"
+    [rowAlternationEnabled]="true" (onEditorPreparing)="onEditorPrepare($event)">
+    <dxo-load-panel [enabled]="false"></dxo-load-panel>
+    <dxo-selection [selectAllMode]="'page'" [showCheckBoxesMode]="'onClick'" mode="multiple"></dxo-selection>
+    <dxo-sorting mode="multiple"></dxo-sorting>
+    <!--<dxo-state-storing [enabled]="true" type="custom" storageKey="stateStore" [customSave]="saveState"
+        [customLoad]="loadState"></dxo-state-storing>-->
+    <dxo-paging [pageSize]="gridConfigData?.GridCofig?.pageSize"></dxo-paging>
+    <dxo-pager [allowedPageSizes]="gridConfigData?.GridCofig?.allowedPageSizes">
+    </dxo-pager>
+    <dxo-column-chooser [title]="'Column Chooser'" [enabled]="true"
+        mode="select"></dxo-column-chooser>
+    <dxo-remote-operations [sorting]="true" [paging]="true" [filtering]="true"></dxo-remote-operations>
+    <dxo-sorting mode="multiple"></dxo-sorting>
+    <dxo-filter-row [visible]="gridConfigData?.GridCofig?.filterEnabled"></dxo-filter-row>
+    <dxo-header-filter [visible]="gridConfigData?.GridCofig?.filterEnabled"></dxo-header-filter>
+
+    <!-- Schedule Type column template for Activity-to-Date grid -->
+    <div *dxTemplate="let cell of 'scheduleTypeCellTemplate'">
+        <div class="candidate-list-resume-template">
+            <a><b class="generic-grid-subject-name">{{cell.data.Type}}</b></a>
+        </div>
+    </div>
+    <!-- // Schedule Type column template for Activity-to-Date grid -->
+
+    <!-- Client column template for Activity-to-Date grid -->
+    <div *dxTemplate="let cell of 'clientCellTemplate'">
+        <div *ngIf="cell.data.Clients.length > 0">
+            <a [routerLink]="['/client/profile',cell.data.Clients[0]['Id']]" target="_blank"
+                style="text-decoration: none;">
+                <span class="candidate-list-resume-template-span">{{cell.data.Clients[0]['Name']}}</span>
+            </a>
+            <a *ngIf="cell.data.Clients.length > 1" [id]="'openTooltip_client' + cell.key.ActivityID">
+                &nbsp; +{{cell.data.Clients.length - 1}}
+            </a>
+        </div>
+    </div>
+
+    <!-- // Client column template for Activity-to-Date grid -->
+
+    <!-- Job order column template for Activity-to-Date grid -->
+    <div *dxTemplate="let cell of 'jobOrderCellTemplate'">
+        <div *ngIf="cell.data.JobOrders.length > 0">
+            <a routerLink="/job-order/summary/{{cell.data.JobOrders[0]['Id']}}/job-info/" target="_blank"
+                style="text-decoration: none;">
+                <span class="candidate-list-resume-template-span">{{cell.data.JobOrders[0]['Name']}}</span>
+            </a>
+            <a *ngIf="cell.data.JobOrders.length > 1" [id]="'openTooltip_jobOrder' + cell.key.ActivityID">
+                &nbsp; +{{cell.data.JobOrders.length - 1}}
+            </a>
+        </div>
+    </div>
+
+    <!-- Recruiters column template for Activity-to-Date grid -->
+    <div *dxTemplate="let cell of 'recruitersCellTemplate'">
+        <div *ngIf="cell.data.Recruiters.length > 0">
+            <span class="candidate-list-resume-template-span">{{cell.data.Recruiters[0]['Name']}}</span>
+            <a *ngIf="cell.data.Recruiters.length > 1" [id]="'openTooltip_recruiter' + cell.key.ActivityID">
+                &nbsp;+{{cell.data.Recruiters.length - 1}}
+            </a>
+        </div>
+    </div>
+
+    <!-- Contact column template for Activity-to-Date grid -->
+    <div *dxTemplate="let cell of 'contactCellTemplate'">
+        <div *ngIf="cell.data.Contacts.length > 0">
+            <a [routerLink]="['/client/contact-profile', cell.data.Contacts[0]['Id']]" target="_blank"
+                style="text-decoration: none;">
+                <span class="candidate-list-resume-template-span">{{cell.data.Contacts[0]['Name']}}</span>
+            </a>
+            <a *ngIf="cell.data.Contacts.length > 1" [id]="'openTooltip_contact' + cell.key.ActivityID">
+                &nbsp;+{{cell.data.Contacts.length - 1}}
+            </a>
+        </div>
+    </div>
+
+    <!-- Candidate column template for Activity-to-Date grid -->
+    <div *dxTemplate="let cell of 'candidatesCellTemplate'">
+        <div *ngIf="cell.data.Candidates.length > 0">
+            <a [routerLink]="['/candidate/profile', cell.data.Candidates[0]['Id']]" target="_blank"
+                style="text-decoration: none;">
+                <span class="candidate-list-resume-template-span">{{cell.data.Candidates[0]['Name']}}</span>
+            </a>
+            <a *ngIf="cell.data.Candidates.length > 1" [id]="'openTooltip_candidate' + cell.key.ActivityID">
+                &nbsp; +{{cell.data.Candidates.length - 1}}
+            </a>
+        </div>
+    </div>
+    <!-- // Job order column template for Activity-to-Date grid -->
+
+    <!-- Note column template for Activity-to-Date grid -->
+    <div *dxTemplate="let cell of 'noteCellTemplate'">
+        <span [id]="'a'+cell.data?.ActivityID" [innerHTML]="cell.data?.Note"
+            class="activty-to-date-note">{{cell.data?.ActivityID}}
+        </span>
+    </div>
+    <!-- // Note column template for Activity-to-Date grid -->
+
+    <!-- candidate contact default phone number template for Activity-to-Date grid -->
+    <div *dxTemplate="let cell of 'candidateDefaultPhoneNumberCellTemplate'" class="phone-number-for-grid">
+        <div *ngIf="cell.data.CandidateDefaultPhoneNumber !== 'Multiple'">
+            <a href="tel:{{cell.data.CandidateDefaultPhoneNumber}}">
+                {{cell.data.CandidateDefaultPhoneNumber}}
+            </a>
+        </div>
+        <div *ngIf="cell.data.CandidateDefaultPhoneNumber === 'Multiple'">
+            {{cell.data.CandidateDefaultPhoneNumber}}
+        </div>
+    </div>
+    <!-- candidate contact default phone number template for Activity-to-Date grid -->
+    <!-- candidate phone number template for Activity-to-Date grid -->
+    <div *dxTemplate="let cell of 'candidateCellPhoneNumberCellTemplate'" class="phone-number-for-grid">
+        <div *ngIf="cell.data.CandidateCellPhoneNumber !== 'Multiple'">
+            <a href="Tel:{{cell.data.CandidateCellPhoneNumber}}">
+                {{cell.data.CandidateCellPhoneNumber}}
+            </a>
+        </div>
+        <div *ngIf="cell.data.CandidateCellPhoneNumber === 'Multiple'">
+            {{cell.data.CandidateCellPhoneNumber}}
+        </div>
+    </div>
+    <!-- candidate phone number template for Activity-to-Date grid -->
+    <!-- contact default phone number template for Activity-to-Date grid -->
+    <div *dxTemplate="let cell of 'contactDefaultPhoneNumberCellTemplate'" class="phone-number-for-grid">
+        <div *ngIf="cell.data.ContactDefaultPhoneNumber !== 'Multiple'">
+            <a href="Tel:{{cell.data.ContactDefaultPhoneNumber}}">
+                {{cell.data.ContactDefaultPhoneNumber}}
+            </a>
+        </div>
+        <div *ngIf="cell.data.ContactDefaultPhoneNumber === 'Multiple'">
+            {{cell.data.ContactDefaultPhoneNumber}}
+        </div>
+    </div>
+    <!-- contact default phone number template for Activity-to-Date grid -->
+    <!-- contact phone number template for Activity-to-Date grid -->
+    <div *dxTemplate="let cell of 'contactCellPhoneNumberCellTemplate'" class="phone-number-for-grid">
+        <div *ngIf="cell.data.ContactCellPhoneNumber !== 'Multiple'">
+            <a href="Tel:{{cell.data.ContactCellPhoneNumber}}">
+                {{cell.data.ContactCellPhoneNumber}}
+            </a>
+        </div>
+        <div *ngIf="cell.data.ContactCellPhoneNumber === 'Multiple'">
+            {{cell.data.ContactCellPhoneNumber}}
+        </div>
+    </div>
+    <!-- contact phone number template for Activity-to-Date grid -->
+</dx-data-grid>

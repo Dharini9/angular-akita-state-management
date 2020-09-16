@@ -1,4 +1,5 @@
 import { Store, StoreConfig } from '@datorama/akita';
+import { DynamicGridState, DynamicGridsStore, createGridInitialState } from '../dynamicGrids/dynamic-grids.store';
 
 export interface PostLoginState {
     ID: number;
@@ -17,6 +18,7 @@ export interface PostLoginState {
     CountryCode: number;
     UserEmail: string;
     ProfilePicture: ProfilePictureState;
+    DynamicStoreState: DynamicGridState;
 }
 
 export interface ProfilePictureState {
@@ -52,7 +54,8 @@ export function createInitialState(): PostLoginState {
             ProfilePictureSize: 0,
             ProfilePictureName: '',
             ProfilePictureDataStr: ''
-        }
+        },
+        DynamicStoreState: createGridInitialState()
     };
 }
 
