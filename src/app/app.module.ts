@@ -4,25 +4,28 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DetailsComponent } from './details/details.component';
-import { PostLoginStore } from './core/store/postLogin/post-login.store';
 import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
-import { PostLoginQuery } from './core/store/postLogin/post-login.query';
+import { LoginComponent } from './login/login.component';
+import { StoreModule } from './core/store/store.module';
+import { CoreModule } from './core/core.module';
+import { GenericGridComponent } from './generic-grid/generic-grid.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DetailsComponent
+    DetailsComponent,
+    LoginComponent,
+    GenericGridComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    StoreModule,
+    CoreModule,
     AkitaNgDevtools.forRoot()
   ],
-  providers: [
-    PostLoginStore,
-    PostLoginQuery
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
