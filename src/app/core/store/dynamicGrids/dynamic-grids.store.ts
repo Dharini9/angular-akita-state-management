@@ -25,7 +25,7 @@ export interface GridColumns {
     AllowSorting: boolean;
 }
 
-export function createInitialState(): DynamicGridState {
+export function createGridInitialState(): DynamicGridState {
     return {
         GridConfigData: [
             {
@@ -45,6 +45,6 @@ export function createInitialState(): DynamicGridState {
 @StoreConfig({ name: 'dynamic-grid' })
 export class DynamicGridsStore extends Store<DynamicGridState> {
     constructor() {
-        super(createInitialState());
+        super(createGridInitialState());
     }
 }

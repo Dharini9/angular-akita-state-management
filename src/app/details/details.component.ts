@@ -41,18 +41,23 @@ export class DetailsComponent implements OnInit {
 
     this.dynamicGridsQuery.dynamicGridsConfig$.subscribe(state => {
       if (state.GridConfigData && state.GridConfigData.length) {
-        const gridConfig = state.GridConfigData.find(gridConfig => gridConfig.GridID === 'ActivityToDate');
+        const gridConfig = JSON.parse(JSON.stringify(state.GridConfigData.find(gridConfig => gridConfig.GridID === 'ActivityToDate')));
         if (gridConfig) {
           // ------ convert property into lowercase as Camel Case is not supported by DevExtreme
-          for (const colm of gridConfig.Columns) {
-            if (colm.hasOwnProperty('FilterOptions')) {
-              const colmn = [];
-              for (const filter of colm['FilterOptions']) {
-                colmn.push({ 'value': filter['Value'], 'text': filter['Text'] });
-              }
-              colm['FilterOptions'] = colmn;
+          gridConfig.Columns.map(column => {
+            if (column.FilterOptions && column.FilterOptions.length) {
+              const filters = [];
+              column.FilterOptions.map(filterOption => {
+                filters.push({
+                  value: filterOption.Value,
+                  text: filterOption.Text
+                });
+                return filterOption;
+              });
+              column.FilterOptions = filters;
             }
-          }
+            return column;
+          });
 
           this.gridConfigData.allowedPageSizes = gridConfig.AllowedPageSizes;
           this.gridConfigData.filterEnabled = gridConfig.FilterEnabled;
